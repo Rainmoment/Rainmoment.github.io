@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>https://rainmoment.github.io/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>Posts on My New Hugo Site</title>
+    <link>https://rainmoment.github.io/post/</link>
+    <description>Recent content in Posts on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 06 Jul 2017 13:17:28 +0800</lastBuildDate>
     
-	<atom:link href="https://rainmoment.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://rainmoment.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -44,15 +44,6 @@
 五、SVM（支持向量机） ​
 SVM处理线性可分的情况相对比较容易，而对于非线性的情况，SVM需要选择一个核函数 κ(⋅,⋅) ，通过将数据映射到高维空间，来解决在原始空间中线性不可分的问题。
 此外，因为训练样例一般是不会独立出现的，它们总是以成对样例的内积形式出现，而用对偶形式表示学习器的优势在为在该表示中可调参数的个数不依赖输入属性的个数，通过使用恰当的核函数来替代内积，可以隐式得将非线性的训练数据映射到高维空间，而不增加可调参数的个数(当然，前提是核函数能够计算对应着两个输入特征向量的内积)。</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://rainmoment.github.io/about/</link>
-      <pubDate>Wed, 05 Jul 2017 21:17:28 +0800</pubDate>
-      
-      <guid>https://rainmoment.github.io/about/</guid>
-      <description></description>
     </item>
     
   </channel>

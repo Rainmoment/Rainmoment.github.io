@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>非线性分类器 &middot; </title>
+
+  
+  <link rel="stylesheet" href="https://rainmoment.github.io/css/poole.css">
+  <link rel="stylesheet" href="https://rainmoment.github.io/css/hyde.css">
+  <link rel="stylesheet" href="https://rainmoment.github.io/css/poole-overrides.css">
+  <link rel="stylesheet" href="https://rainmoment.github.io/css/hyde-overrides.css">
+  <link rel="stylesheet" href="https://rainmoment.github.io/css/hyde-x.css">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://rainmoment.github.io/touch-icon-144-precomposed.png">
+  <link href="https://rainmoment.github.io/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1></h1>
+      
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://rainmoment.github.io/">Blog</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2017 <a href="https://rainmoment.github.io/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">非线性分类器</h1>
+    <span class="post-date">Jul 6, 2017 &middot; 1 minute read
+    </span>
+    
+
+<h3 id="一-引言">一、引言</h3>
+
+<p>前面的学习中，我们学习了有关线性分类器的相关知识，但是要知道，很多情况下我们并不能保证类别间的分类面是线性的（线性是最简单的情况），而且许多复杂问题中，可能采用非线性分类器更适合问题的解决。这里主要说明感知器和支持向量机两种分类器。</p>
+
+<h3 id="二-发展进程">二、发展进程</h3>
+
+<p>我们回顾一下神经网络发展的历程。神经网络的发展历史曲折荡漾，既有被人捧上天的时刻，也有摔落在街头无人问津的时段，中间经历了数次大起大落。</p>
+
+<p>从单层神经网络（感知器）开始，到包含一个隐藏层的两层神经网络，再到多层的深度神经网络，一共有三次兴起过程。详见下图。</p>
+
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fha42u5x54j31in0tpjvk.jpg" alt="" /></p>
+
+<p>上图中的顶点与谷底可以看作神经网络发展的高峰与低谷。图中的横轴是时间，以年为单位。纵轴是一个神经网络影响力的示意表示。如果把1949年Hebb模型提出到1958年的感知机诞生这个10年视为落下（没有兴起）的话，那么神经网络算是经历了“三起三落”这样一个过程。俗话说，天将降大任于斯人也，必先苦其心志，劳其筋骨。经历过如此多波折的神经网络能够在现阶段取得成功也可以被看做是磨砺的积累吧。</p>
+
+<p>历史最大的好处是可以给现在做参考。科学的研究呈现螺旋形上升的过程，不可能一帆风顺。同时，这也给现在过分热衷深度学习与人工智能的人敲响警钟，因为这不是第一次人们因为神经网络而疯狂了。1958年到1969年，以及1985年到1995，这两个十年间人们对于神经网络以及人工智能的期待并不现在低，可结果如何大家也能看的很清楚。</p>
+
+<p>因此，冷静才是对待目前深度学习热潮的最好办法。如果因为深度学习火热，或者可以有“钱景”就一窝蜂的涌入，那么最终的受害人只能是自己。神经网络界已经两次有被人们捧上天了的境况，相信也对于捧得越高，摔得越惨这句话深有体会。因此，神经网络界的学者也必须给这股热潮浇上一盆水，不要让媒体以及投资家们过分的高看这门技术。很有可能，三十年河东，三十年河西，在几年后，神经网络就再次陷入谷底。根据上图的历史曲线图，这是很有可能的。</p>
+
+<h3 id="三-异或问题">三、异或问题</h3>
+
+<p>人们在研究非线性不可分问题时，不需要考虑复杂情况。众所周知，异或布尔函数是该问题的典型例子。可以将布尔函数理解为分类任务，即根据输入的二进制数x= 的不同，输出为0或1，将x归为A(1)或B(0)两类中的一种，表1中给出XOR操作对应的真值表。</p>
+
+<p>表1  XOR问题的真值表</p>
+
+<p>​                   <img src="https://ws4.sinaimg.cn/large/006tKfTcly1fhaguxvsvxj307r065745.jpg" alt="" /></p>
+
+<p>图1给出了类在空间中的位置。从图中明显看出，一条直线不能将这两类分离，而另外两种布尔函数，AND和OR，却是线性可分的。表2中列出了AND和OR操作对应的真值表，图2(a)和2(b)描述了在二维空间中各类的位置。图3给出了能够计算突触权的感知器，从而实现OR门（验证）。</p>
+
+<p>表2  AND和OR问题的真值表</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fhail4hjfcj30km08c0ss.jpg" alt="" /></p>
+
+<p>​                      <img src="https://ws1.sinaimg.cn/large/006tKfTcly1fhagvmw9zxj307u07l744.jpg" alt="" /></p>
+
+<p>​                        图1 类A和类B的问题</p>
+
+<p>​        <img src="https://ws4.sinaimg.cn/large/006tKfTcly1fhagw0fbx0j305p05n0sm.jpg" alt="" /> <img src="https://ws4.sinaimg.cn/large/006tKfTcly1fhagw01nxyj305p05t0sl.jpg" alt="" /></p>
+
+<p>​                       图2 类A和类B的AND和OR问题</p>
+
+<p>​                     <img src="https://ws2.sinaimg.cn/large/006tKfTcly1fhagxlh1moj306c0453yd.jpg" alt="" /></p>
+
+<p>​                       图3 实现OR门的感知器</p>
+
+<p>现在最重要的是先处理XOR问题，然后将该过程扩展为非线性可分的一般情况。这里从几何结构开始。</p>
+
+<h3 id="四-两层感知器">四、两层感知器</h3>
+
+<p>​     为了分离图1中的两类A和B，最初的想法是画两条直线，而不是一条直线。</p>
+
+<p>​     图4给出了两条可能的直线，以及其之间的区域。现在可以将这两类分离，类A在 g1(x)的右侧(+)，g2 (x)的左侧 (-)。与类B对应的区域在g1 (x)的左侧， g2(x)的右侧。现在要做的是分两个阶段对问题进行处理，第一阶段是计算特征向量x相对于每一条决策线的位置；第二阶段结合前一阶段的结果，确定x相对应这两条线的位置，也就是说，x在阴影区域或在阴影区域内。现在从不同的角度来看这一问题，这会使后续的推广更容易。</p>
+
+<p>​                 <img src="https://ws1.sinaimg.cn/large/006tKfTcly1fhagxvlq5lj309s093t8u.jpg" alt="" /></p>
+
+<p>​                   图4 在XOR问题中两层感知器实现的决策线</p>
+
+<p>​                   表 3 XOR问题的两个计算阶段的真值表</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fhaidna8dlj30ev06k749.jpg" alt="" /></p>
+
+<p>​     在计算的第一阶段，激活函数f(.)是具有电平0和1的阶跃函数。表3给出了各种不同输入情况下产生的y值，即输入向量x与两条决策线中任意一条的相对位置。换一个角度，第一阶段是计算输入向量x到新向量[y1,y2]的映射。第二阶段是基于转换数据实现决策，从图5可以明显看出，画出第三条线g(y)就可以了，该线可以通过第三个神经元来实现。换言之，第一阶段的映射将非线性可分问题转换为线性可分问题。图6给出了实现方法，三条线中的每一条都是由具有适当突触权的神经元实现的。由此生成的多层结构可以认为是感知器的扩展，将它称为两层感知器或两层前馈神经网络。第一层的两个神经元实现最后阶段的计算，并构成输出层。</p>
+
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fhaicz9ewaj308q07iwee.jpg" alt="" /></p>
+
+<p>​                     图5 在XOR问题中由第二层的神经元形成的决策线</p>
+
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fhaiwwka42j30jh0cajs6.jpg" alt="" /></p>
+
+<p>图 6 三维显示的分界面</p>
+
+<p>图7 中的多层感知器结构可以扩展到n维输入向量，在隐层中有两个以上的神经元。为了完成更复杂的非线性分类任务，我们将重点分析这种神经元网络的类判别能力。</p>
+
+<p>​                       <img src="https://ws4.sinaimg.cn/large/006tNbRwly1fhaide4jcrj308i04umx5.jpg" alt="" /></p>
+
+<p>​                        图7 用两层感知器解决XOR问题</p>
+
+<p>​</p>
+
+<h3 id="五-svm-支持向量机">五、SVM（支持向量机）</h3>
+
+<p>​</p>
+
+<p>SVM处理线性可分的情况相对比较容易，而对于非线性的情况，SVM需要选择一个核函数 κ(⋅,⋅) ，通过将数据映射到高维空间，来解决在原始空间中线性不可分的问题。</p>
+
+<p>此外，因为训练样例一般是不会独立出现的，它们总是以成对样例的内积形式出现，而用对偶形式表示学习器的优势在为在该表示中可调参数的个数不依赖输入属性的个数，通过使用恰当的核函数来替代内积，可以隐式得将非线性的训练数据映射到高维空间，而不增加可调参数的个数(当然，前提是核函数能够计算对应着两个输入特征向量的内积)。</p>
+
+<p>在线性不可分的情况下，支持向量机首先在低维空间中完成计算，然后通过核函数将输入空间映射到高维特征空间，最终在高维特征空间中构造出最优分离超平面，从而把平面上本身不好分的非线性数据分开。如图7所示，一堆数据在二维空间无法划分，从而映射到三维空间里划分：</p>
+
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fhaidtz8kqj30fd06y3zd.jpg" alt="" /></p>
+
+<p>图8</p>
+
+<p>而在我们遇到核函数之前，如果用原始的方法，那么在用线性学习器学习一个非线性关系，需要选择一个非线性特征集，并且将数据写成新的表达形式，这等价于应用一个固定的非线性映射，将数据映射到特征空间，在特征空间中使用线性学习器。</p>
+
+<h5 id="建立非线性学习器分为两步">建立非线性学习器分为两步：</h5>
+
+<ol>
+<li>首先使用一个非线性映射将数据变换到一个特征空间F。</li>
+<li>然后在特征空间使用线性学习器分类。</li>
+</ol>
+
+<h5 id="核函数-kernel-如何处理非线性数据">核函数（Kernel）：如何处理非线性数据</h5>
+
+<p>来看个核函数的例子。如下图所示的两类数据，分别分布为两个圆圈的形状，这样的数据本身就是线性不可分的，此时咱们该如何把这两类数据分开呢？</p>
+
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fhaie6jujaj306o0583yh.jpg" alt="" /></p>
+
+<p>图9</p>
+
+<p>事实上，上图所述的这个数据集，是用两个半径不同的圆圈加上了少量的噪音生成得到的，所以，一个理想的分界应该是一个“圆圈”而不是一条线（超平面）。如果我们做一个映射 <em>ϕ</em>:R2→R5 ，将 <em>X</em> 按照上面的规则映射为 <em>Z</em> ，那么在新的空间中原来的数据将变成线性可分的，从而使用之前我们推导的线性分类算法就可以进行处理了。这正是核函数方法处理非线性问题的基本思想。</p>
+
+<p>​    再进一步描述核函数的细节之前，不妨再来看看这个例子映射过后的直观例子。具体来说，我这里的超平面只需要把它映射到一个特殊的三维空间中即可，下图即是映射之后的结果，将坐标轴经过适当的旋转，就可以很明显地看出，数据是可以通过一个平面来分开的：</p>
+
+<p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fhabxnlnvgg30cc09wjzj.gif" alt="" /></p>
+
+<p>图10</p>
+
+<p>其实刚才的方法稍想一下就会发现有问题：在最初的例子里，我们对一个二维空间做映射，选择的新空间是原始空间的所有一阶和二阶的组合，得到了五个维度；如果原始空间是三维，那么我们会得到 19 维的新空间，这个数目是呈爆炸性增长的，这给计算带来了非常大的困难，而且如果遇到无穷维的情况，就根本无从计算了。但是使用核函数不会有这样的维数灾难。</p>
+
+<p>上面说了这么一大堆，读者可能还是没明白核函数到底是个什么东西？我再简要概括下，即以下三点：</p>
+
+<ol>
+<li>实际中，我们会经常遇到线性不可分的样例，此时，我们的常用做法是把样例特征映射到高维空间中去；</li>
+<li>但进一步，如果凡是遇到线性不可分的样例，一律映射到高维空间，那么这个维度大小是会高到可怕的。那咋办呢？</li>
+<li>此时，核函数就隆重登场了，核函数的价值在于它虽然也是讲特征进行从低维到高维的转换，但核函数绝就绝在它事先在低维上进行计算，而将实质上的分类效果表现在了高维上，也就如上文所说的避免了直接在高维空间中的复杂计算。</li>
+</ol>
+
+<h3 id="六-线性分类器与非线性分类器的实例比较">六、线性分类器与非线性分类器的实例比较</h3>
+
+<p>图12是多个点的分布情况，红色的点分布在小圆内，蓝色的点分布在两圆之间。</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fhaietkfmdj30v40nc754.jpg" alt="" /></p>
+
+<p>​                            图10</p>
+
+<p>然后分别用线性分类器和非线性分类器来进行分类，关键代码如下：</p>
+
+<p>（1）非线性分类器关键代码</p>
+
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fhaifp03xdj30ts04cglo.jpg" alt="" /></p>
+
+<p>（2）线性分类器关键代码</p>
+
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fhaigwt79kj30te03umx5.jpg" alt="" /></p>
+
+<p>下图是分类的具体情况：</p>
+
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fhaifpgqwsj30v40ncaat.jpg" alt="" /></p>
+
+<p>非线性分类器分类情况 misclass=0.0300（错误率）</p>
+
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fhaifp9j7hj30v40nc3zu.jpg" alt="" /></p>
+
+<p>线性分类器分类情况 misclass=0.4100（错误率）</p>
+
+<h3 id="总结">总结</h3>
+
+<p>对于本非线性问题，可以清楚的知道非线性分类器在对数据进行分类时要更加的精确，错误率明显低于线性分类器。如果一个问题是非线性问题并且它的类边界不能够用线性超平面估计得很好，那么非线性分类器通常会比线性分类器表现得更精准。如果一个问题是线性的，那么最好使用简单的线性分类器来处理。而且，在客观世界中大多数问题都是非线性的，非线性分类器具有更广的适用性，非线性分类器非常多，对于实际应用中具体使用哪种方法，需要自己去尝试。</p>
+
+  </div>
+  
+</div>
+
+
+
+
+
+</body>
+</html>
+
