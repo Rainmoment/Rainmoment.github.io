@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
+    <title>R&#39;s Blog</title>
     <link>https://rainmoment.github.io/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <description>Recent content on R&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 06 Jul 2017 13:17:28 +0800</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>非线性分类器</title>
-      <link>https://rainmoment.github.io/post/non-linear-classifier/</link>
+      <link>https://rainmoment.github.io/post/non_linear_classifier/</link>
       <pubDate>Thu, 06 Jul 2017 13:17:28 +0800</pubDate>
       
-      <guid>https://rainmoment.github.io/post/non-linear-classifier/</guid>
+      <guid>https://rainmoment.github.io/post/non_linear_classifier/</guid>
       <description>There are two ways to write error-free programs; only the third works. –Alan J. Perlis
  一、引言 前面的学习中，我们学习了有关线性分类器的相关知识，但是要知道，很多情况下我们并不能保证类别间的分类面是线性的（线性是最简单的情况），而且许多复杂问题中，可能采用非线性分类器更适合问题的解决。这里主要说明感知器和支持向量机两种分类器。
 二、发展进程 我们回顾一下神经网络发展的历程。神经网络的发展历史曲折荡漾，既有被人捧上天的时刻，也有摔落在街头无人问津的时段，中间经历了数次大起大落。
@@ -38,15 +38,6 @@
 ​ 表 3 XOR问题的两个计算阶段的真值表
 ​ 在计算的第一阶段，激活函数f(.)是具有电平0和1的阶跃函数。表3给出了各种不同输入情况下产生的y值，即输入向量x与两条决策线中任意一条的相对位置。换一个角度，第一阶段是计算输入向量x到新向量[y1,y2]的映射。第二阶段是基于转换数据实现决策，从图5可以明显看出，画出第三条线g(y)就可以了，该线可以通过第三个神经元来实现。换言之，第一阶段的映射将非线性可分问题转换为线性可分问题。图6给出了实现方法，三条线中的每一条都是由具有适当突触权的神经元实现的。由此生成的多层结构可以认为是感知器的扩展，将它称为两层感知器或两层前馈神经网络。第一层的两个神经元实现最后阶段的计算，并构成输出层。
 ​ 图5 在XOR问题中由第二层的神经元形成的决策线</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://rainmoment.github.io/about/</link>
-      <pubDate>Wed, 05 Jul 2017 21:17:28 +0800</pubDate>
-      
-      <guid>https://rainmoment.github.io/about/</guid>
-      <description></description>
     </item>
     
   </channel>

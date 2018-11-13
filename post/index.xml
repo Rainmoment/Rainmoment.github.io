@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on My New Hugo Site</title>
+    <title>Posts on R&#39;s Blog</title>
     <link>https://rainmoment.github.io/post/</link>
-    <description>Recent content in Posts on My New Hugo Site</description>
+    <description>Recent content in Posts on R&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 06 Jul 2017 13:17:28 +0800</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>非线性分类器</title>
-      <link>https://rainmoment.github.io/post/non-linear-classifier/</link>
+      <link>https://rainmoment.github.io/post/non_linear_classifier/</link>
       <pubDate>Thu, 06 Jul 2017 13:17:28 +0800</pubDate>
       
-      <guid>https://rainmoment.github.io/post/non-linear-classifier/</guid>
+      <guid>https://rainmoment.github.io/post/non_linear_classifier/</guid>
       <description>There are two ways to write error-free programs; only the third works. –Alan J. Perlis
  一、引言 前面的学习中，我们学习了有关线性分类器的相关知识，但是要知道，很多情况下我们并不能保证类别间的分类面是线性的（线性是最简单的情况），而且许多复杂问题中，可能采用非线性分类器更适合问题的解决。这里主要说明感知器和支持向量机两种分类器。
 二、发展进程 我们回顾一下神经网络发展的历程。神经网络的发展历史曲折荡漾，既有被人捧上天的时刻，也有摔落在街头无人问津的时段，中间经历了数次大起大落。
